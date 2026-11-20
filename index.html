@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Igunosalabs — Physical-World AI Research</title>
+  <meta name="description" content="Igunosalabs is a non-profit R&D lab advancing AI technology in the physical world. All research findings are open for commercial use." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #0a0b0d;
+      --surface: #12141a;
+      --border: #222631;
+      --text: #f3f4f6;
+      --muted: #9ca3af;
+      --accent: #38bdf8;
+      --accent-dim: rgba(56, 189, 248, 0.12);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .container {
+      max-width: 1040px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    header {
+      border-bottom: 1px solid var(--border);
+      padding: 20px 0;
+      position: sticky;
+      top: 0;
+      background: rgba(10, 11, 13, 0.85);
+      backdrop-filter: blur(12px);
+      z-index: 10;
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 500;
+      font-size: 0.95rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text);
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 28px;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: color 0.15s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--text);
+    }
+
+    .hero {
+      padding: 112px 0 88px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .badge {
+      display: inline-block;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      color: var(--accent);
+      background: var(--accent-dim);
+      border: 1px solid rgba(56, 189, 248, 0.25);
+      padding: 6px 12px;
+      border-radius: 999px;
+      margin-bottom: 24px;
+      letter-spacing: 0.04em;
+    }
+
+    h1 {
+      font-size: clamp(2.25rem, 5vw, 3.75rem);
+      font-weight: 600;
+      line-height: 1.12;
+      letter-spacing: -0.03em;
+      max-width: 780px;
+      margin-bottom: 24px;
+    }
+
+    .hero p {
+      font-size: 1.125rem;
+      color: var(--muted);
+      max-width: 620px;
+      margin-bottom: 36px;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      padding: 12px 22px;
+      border-radius: 8px;
+      font-size: 0.95rem;
+      font-weight: 500;
+      text-decoration: none;
+      transition: all 0.15s ease;
+    }
+
+    .btn-primary {
+      background: var(--text);
+      color: var(--bg);
+    }
+
+    .btn-primary:hover {
+      background: #e5e7eb;
+    }
+
+    .btn-secondary {
+      background: var(--surface);
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+
+    .btn-secondary:hover {
+      border-color: #374151;
+    }
+
+    section {
+      padding: 80px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .section-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--accent);
+      margin-bottom: 12px;
+    }
+
+    h2 {
+      font-size: 1.875rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      margin-bottom: 16px;
+    }
+
+    .section-intro {
+      color: var(--muted);
+      max-width: 640px;
+      margin-bottom: 44px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 20px;
+    }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 28px;
+    }
+
+    .card h3 {
+      font-size: 1.05rem;
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+
+    .card p {
+      font-size: 0.925rem;
+      color: var(--muted);
+    }
+
+    .callout {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 36px;
+      display: grid;
+      grid-template-columns: 1.5fr 1fr;
+      gap: 32px;
+      align-items: center;
+    }
+
+    .callout-meta {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.85rem;
+      color: var(--muted);
+      border-left: 2px solid var(--accent);
+      padding-left: 20px;
+    }
+
+    .callout-meta div {
+      margin-bottom: 8px;
+    }
+
+    .callout-meta div:last-child {
+      margin-bottom: 0;
+    }
+
+    footer {
+      padding: 40px 0;
+      color: var(--muted);
+      font-size: 0.875rem;
+    }
+
+    .footer-inner {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    @media (max-width: 720px) {
+      .nav-links {
+        display: none;
+      }
+      .callout {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <a href="#" class="logo">Igunosalabs</a>
+      <nav class="nav-links">
+        <a href="#mission">Mission</a>
+        <a href="#research">Research</a>
+        <a href="#open-use">Open Use</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container">
+        <span class="badge">NON-PROFIT R&amp;D LAB</span>
+        <h1>Advancing AI in the physical world.</h1>
+        <p>
+          Igunosalabs is an independent non-profit research organization dedicated to embodied intelligence, robotics, and real-world AI systems. Everything we discover is published openly—and free for others to build on commercially.
+        </p>
+        <div class="actions">
+          <a href="#research" class="btn btn-primary">Explore Research</a>
+          <a href="#open-use" class="btn btn-secondary">Commercial Use Policy</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="mission">
+      <div class="container">
+        <div class="section-label">Mission</div>
+        <h2>Bridging intelligence and physical reality</h2>
+        <p class="section-intro">
+          Digital intelligence has scaled rapidly, but operating reliably in unstructured physical environments remains one of the hardest open problems in engineering. We focus on foundational R&amp;D that moves AI out of screens and into the real world.
+        </p>
+      </div>
+    </section>
+
+    <section id="research">
+      <div class="container">
+        <div class="section-label">Focus Areas</div>
+        <h2>Core Research Pillars</h2>
+        <p class="section-intro">
+          Our work spans hardware-aware learning, sensorimotor control, and reproducible physical benchmarks.
+        </p>
+        <div class="grid">
+          <div class="card">
+            <h3>Embodied Control</h3>
+            <p>Policies and control architectures that enable robots to manipulate, navigate, and adapt under real-world physical constraints.</p>
+          </div>
+          <div class="card">
+            <h3>Physical Perception</h3>
+            <p>Multimodal sensing—vision, tactile, and proprioceptive fusion—built for noisy, dynamic environments.</p>
+          </div>
+          <div class="card">
+            <h3>Sim-to-Real Transfer</h3>
+            <p>Closing the reality gap with physically grounded simulation, system identification, and low-cost hardware validation.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="open-use">
+      <div class="container">
+        <div class="callout">
+          <div>
+            <div class="section-label">Open Commercialization</div>
+            <h2>Non-profit research. Commercial-ready.</h2>
+            <p style="color: var(--muted);">
+              As a non-profit, Igunosalabs exists to accelerate the entire field. Our papers, datasets, models, and reference designs can be adopted, modified, and deployed by startups, enterprises, and independent builders for commercial products.
+            </p>
+          </div>
+          <div class="callout-meta">
+            <div><strong>Entity:</strong> Igunosalabs (Non-Profit R&amp;D)</div>
+            <div><strong>Domain:</strong> Physical-World AI &amp; Robotics</div>
+            <div><strong>Findings:</strong> Open for Commercial Use</div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-inner">
+      <span>&copy; 2026 Igunosalabs</span>
+      <span>robotics.dexx.systems</span>
+    </div>
+  </footer>
+</body>
+</html>
