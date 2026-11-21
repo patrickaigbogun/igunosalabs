@@ -3,23 +3,29 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Igunosalabs — Physical-World AI Research</title>
-  <meta name="description" content="Igunosalabs is a non-profit R&D lab advancing AI technology in the physical world. All research findings are open for commercial use." />
+  <title>IGUNOSALABS — Physical-World AI Research</title>
+  <meta name="description" content="Igunosalabs is an independent non-profit R&D institution advancing AI in the physical world. All research findings are open for commercial use." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --bg: #0a0b0d;
-      --surface: #12141a;
-      --border: #222631;
-      --text: #f3f4f6;
-      --muted: #9ca3af;
-      --accent: #38bdf8;
-      --accent-dim: rgba(56, 189, 248, 0.12);
+      --ink: #060607;
+      --ink-elevated: #0d0e11;
+      --ink-line: rgba(255, 255, 255, 0.12);
+      --ink-line-strong: rgba(255, 255, 255, 0.24);
+      --paper: #f2f2ee;
+      --paper-line: rgba(6, 6, 7, 0.14);
+      --paper-muted: #4b4e54;
+      --text-light: #f4f4f1;
+      --text-dim: #8b8f98;
+      --signal: #d94e1f;
+      --font-display: 'Space Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-mono: 'IBM Plex Mono', ui-monospace, SFMono-Regular, monospace;
     }
 
-    * {
+    *, *::before, *::after {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
@@ -27,230 +33,678 @@
 
     html {
       scroll-behavior: smooth;
+      background: var(--ink);
+      color: var(--text-light);
     }
 
     body {
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.6;
+      font-family: var(--font-body);
+      background: var(--ink);
+      color: var(--text-light);
+      line-height: 1.55;
       -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    ::selection {
+      background: var(--text-light);
+      color: var(--ink);
     }
 
     .container {
-      max-width: 1040px;
+      width: 100%;
+      max-width: 1320px;
       margin: 0 auto;
-      padding: 0 24px;
+      padding: 0 clamp(20px, 4vw, 48px);
     }
 
+    .mono {
+      font-family: var(--font-mono);
+    }
+
+    /* Navigation */
     header {
-      border-bottom: 1px solid var(--border);
-      padding: 20px 0;
-      position: sticky;
+      position: fixed;
       top: 0;
-      background: rgba(10, 11, 13, 0.85);
-      backdrop-filter: blur(12px);
-      z-index: 10;
+      left: 0;
+      right: 0;
+      z-index: 50;
+      border-bottom: 1px solid var(--ink-line);
+      background: rgba(6, 6, 7, 0.82);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
     }
 
-    .nav {
+    .nav-bar {
+      height: 64px;
       display: flex;
       align-items: center;
       justify-content: space-between;
+      gap: 24px;
     }
 
-    .logo {
-      font-family: 'JetBrains Mono', monospace;
-      font-weight: 500;
-      font-size: 0.95rem;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--text);
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
       text-decoration: none;
+      color: var(--text-light);
+      font-family: var(--font-display);
+      font-weight: 600;
+      font-size: 0.95rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    .brand-mark {
+      width: 18px;
+      height: 18px;
+      position: relative;
+      display: inline-block;
+      border: 1px solid var(--text-light);
+    }
+
+    .brand-mark::after {
+      content: "";
+      position: absolute;
+      inset: 4px;
+      background: var(--text-light);
     }
 
     .nav-links {
       display: flex;
-      gap: 28px;
+      align-items: center;
+      gap: 32px;
     }
 
     .nav-links a {
-      color: var(--muted);
+      color: var(--text-dim);
       text-decoration: none;
-      font-size: 0.9rem;
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
       transition: color 0.15s ease;
     }
 
     .nav-links a:hover {
-      color: var(--text);
+      color: var(--text-light);
     }
 
+    .nav-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 9px 16px;
+      border: 1px solid var(--ink-line-strong);
+      color: var(--text-light);
+      text-decoration: none;
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+    }
+
+    .nav-cta:hover {
+      background: var(--text-light);
+      color: var(--ink);
+      border-color: var(--text-light);
+    }
+
+    /* Hero */
     .hero {
-      padding: 112px 0 88px;
-      border-bottom: 1px solid var(--border);
+      position: relative;
+      min-height: 100svh;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding-top: 120px;
+      padding-bottom: clamp(48px, 8vh, 88px);
+      border-bottom: 1px solid var(--ink-line);
+      overflow: hidden;
     }
 
-    .badge {
-      display: inline-block;
-      font-family: 'JetBrains Mono', monospace;
+    #field-canvas {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      opacity: 0.65;
+    }
+
+    .hero-vignette {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 72% 32%, rgba(255, 255, 255, 0.04) 0%, transparent 52%),
+        linear-gradient(180deg, rgba(6, 6, 7, 0.35) 0%, rgba(6, 6, 7, 0.72) 60%, rgba(6, 6, 7, 0.98) 100%);
+      pointer-events: none;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-family: var(--font-mono);
       font-size: 0.75rem;
-      color: var(--accent);
-      background: var(--accent-dim);
-      border: 1px solid rgba(56, 189, 248, 0.25);
-      padding: 6px 12px;
-      border-radius: 999px;
-      margin-bottom: 24px;
-      letter-spacing: 0.04em;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      margin-bottom: 28px;
+    }
+
+    .status-dot {
+      width: 7px;
+      height: 7px;
+      background: var(--signal);
+      display: inline-block;
     }
 
     h1 {
-      font-size: clamp(2.25rem, 5vw, 3.75rem);
-      font-weight: 600;
-      line-height: 1.12;
-      letter-spacing: -0.03em;
-      max-width: 780px;
-      margin-bottom: 24px;
-    }
-
-    .hero p {
-      font-size: 1.125rem;
-      color: var(--muted);
-      max-width: 620px;
+      font-family: var(--font-display);
+      font-size: clamp(2.8rem, 7.6vw, 6.4rem);
+      font-weight: 500;
+      line-height: 0.98;
+      letter-spacing: -0.035em;
+      max-width: 15ch;
       margin-bottom: 36px;
+      text-transform: uppercase;
     }
 
-    .actions {
+    .hero-bottom {
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+      gap: 40px;
+      align-items: end;
+      padding-top: 32px;
+      border-top: 1px solid var(--ink-line);
+    }
+
+    .hero-lead {
+      font-size: clamp(1rem, 1.35vw, 1.2rem);
+      color: #c7cad1;
+      max-width: 54ch;
+      line-height: 1.6;
+    }
+
+    .hero-actions {
       display: flex;
       flex-wrap: wrap;
-      gap: 14px;
+      justify-content: flex-end;
+      gap: 12px;
     }
 
     .btn {
       display: inline-flex;
       align-items: center;
-      padding: 12px 22px;
-      border-radius: 8px;
-      font-size: 0.95rem;
+      justify-content: space-between;
+      gap: 18px;
+      padding: 15px 24px;
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
       font-weight: 500;
-      text-decoration: none;
-      transition: all 0.15s ease;
-    }
-
-    .btn-primary {
-      background: var(--text);
-      color: var(--bg);
-    }
-
-    .btn-primary:hover {
-      background: #e5e7eb;
-    }
-
-    .btn-secondary {
-      background: var(--surface);
-      color: var(--text);
-      border: 1px solid var(--border);
-    }
-
-    .btn-secondary:hover {
-      border-color: #374151;
-    }
-
-    section {
-      padding: 80px 0;
-      border-bottom: 1px solid var(--border);
-    }
-
-    .section-label {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.75rem;
+      letter-spacing: 0.08em;
       text-transform: uppercase;
+      text-decoration: none;
+      border: 1px solid transparent;
+      transition: all 0.16s ease;
+    }
+
+    .btn-solid {
+      background: var(--text-light);
+      color: var(--ink);
+      border-color: var(--text-light);
+    }
+
+    .btn-solid:hover {
+      background: #ffffff;
+      transform: translateY(-1px);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--text-light);
+      border-color: var(--ink-line-strong);
+    }
+
+    .btn-outline:hover {
+      border-color: var(--text-light);
+      background: rgba(255, 255, 255, 0.04);
+    }
+
+    /* Telemetry Strip */
+    .telemetry-strip {
+      border-bottom: 1px solid var(--ink-line);
+      background: var(--ink-elevated);
+    }
+
+    .telemetry-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+    }
+
+    .telemetry-cell {
+      padding: 20px 24px;
+      border-right: 1px solid var(--ink-line);
+    }
+
+    .telemetry-cell:first-child {
+      padding-left: 0;
+    }
+
+    .telemetry-cell:last-child {
+      border-right: none;
+      padding-right: 0;
+    }
+
+    .telemetry-label {
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
       letter-spacing: 0.1em;
-      color: var(--accent);
-      margin-bottom: 12px;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      margin-bottom: 6px;
     }
 
-    h2 {
-      font-size: 1.875rem;
-      font-weight: 600;
-      letter-spacing: -0.02em;
-      margin-bottom: 16px;
-    }
-
-    .section-intro {
-      color: var(--muted);
-      max-width: 640px;
-      margin-bottom: 44px;
-    }
-
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 20px;
-    }
-
-    .card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 28px;
-    }
-
-    .card h3 {
-      font-size: 1.05rem;
-      font-weight: 600;
-      margin-bottom: 10px;
-    }
-
-    .card p {
-      font-size: 0.925rem;
-      color: var(--muted);
-    }
-
-    .callout {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 36px;
-      display: grid;
-      grid-template-columns: 1.5fr 1fr;
-      gap: 32px;
-      align-items: center;
-    }
-
-    .callout-meta {
-      font-family: 'JetBrains Mono', monospace;
+    .telemetry-val {
+      font-family: var(--font-mono);
       font-size: 0.85rem;
-      color: var(--muted);
-      border-left: 2px solid var(--accent);
-      padding-left: 20px;
+      color: var(--text-light);
     }
 
-    .callout-meta div {
+    /* Light Editorial Section (Thesis) */
+    .section-paper {
+      background: var(--paper);
+      color: var(--ink);
+      padding: clamp(80px, 11vw, 148px) 0;
+      border-bottom: 1px solid var(--paper-line);
+    }
+
+    .section-dark {
+      background: var(--ink);
+      color: var(--text-light);
+      padding: clamp(80px, 11vw, 148px) 0;
+      border-bottom: 1px solid var(--ink-line);
+    }
+
+    .section-header {
+      display: grid;
+      grid-template-columns: 260px minmax(0, 1fr);
+      gap: 32px;
+      margin-bottom: clamp(48px, 7vw, 84px);
+    }
+
+    .section-index {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding-top: 8px;
+    }
+
+    .section-paper .section-index {
+      color: var(--paper-muted);
+    }
+
+    .section-dark .section-index {
+      color: var(--text-dim);
+    }
+
+    .section-title {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 4.2vw, 3.6rem);
+      font-weight: 500;
+      line-height: 1.06;
+      letter-spacing: -0.03em;
+      max-width: 22ch;
+    }
+
+    .section-sub {
+      margin-top: 22px;
+      font-size: 1.05rem;
+      max-width: 60ch;
+      line-height: 1.65;
+    }
+
+    .section-paper .section-sub {
+      color: var(--paper-muted);
+    }
+
+    .section-dark .section-sub {
+      color: var(--text-dim);
+    }
+
+    /* Pillars 3-column razor grid */
+    .pillars-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      border-top: 1px solid var(--paper-line);
+      border-bottom: 1px solid var(--paper-line);
+    }
+
+    .pillar {
+      padding: 40px 32px 44px;
+      border-right: 1px solid var(--paper-line);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 28px;
+    }
+
+    .pillar:first-child {
+      padding-left: 0;
+    }
+
+    .pillar:last-child {
+      border-right: none;
+      padding-right: 0;
+    }
+
+    .pillar-num {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      color: var(--signal);
+    }
+
+    .pillar h3 {
+      font-family: var(--font-display);
+      font-size: 1.55rem;
+      font-weight: 500;
+      letter-spacing: -0.02em;
+      margin: 12px 0 14px;
+      text-transform: uppercase;
+    }
+
+    .pillar p {
+      font-size: 0.95rem;
+      color: var(--paper-muted);
+      line-height: 1.65;
+    }
+
+    .pillar-foot {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--ink);
+      padding-top: 18px;
+      border-top: 1px solid var(--paper-line);
+    }
+
+    /* Programs Catalog */
+    .programs-list {
+      border-top: 1px solid var(--ink-line);
+    }
+
+    .program-row {
+      display: grid;
+      grid-template-columns: 120px 1.2fr 1.6fr 160px;
+      gap: 28px;
+      align-items: start;
+      padding: 36px 0;
+      border-bottom: 1px solid var(--ink-line);
+      transition: background 0.15s ease;
+    }
+
+    .program-row:hover {
+      background: rgba(255, 255, 255, 0.02);
+    }
+
+    .program-code {
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      letter-spacing: 0.1em;
+      color: var(--text-dim);
+      padding-top: 4px;
+    }
+
+    .program-name {
+      font-family: var(--font-display);
+      font-size: 1.4rem;
+      font-weight: 500;
+      letter-spacing: -0.02em;
+      text-transform: uppercase;
       margin-bottom: 8px;
     }
 
-    .callout-meta div:last-child {
-      margin-bottom: 0;
+    .program-domain {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-dim);
     }
 
+    .program-desc {
+      font-size: 0.95rem;
+      color: #b4b8c2;
+      line-height: 1.65;
+    }
+
+    .program-status {
+      text-align: right;
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding-top: 4px;
+    }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 5px 10px;
+      border: 1px solid var(--ink-line-strong);
+      color: var(--text-light);
+    }
+
+    .tag-dot {
+      width: 6px;
+      height: 6px;
+      background: var(--signal);
+    }
+
+    /* Open Commercialization Doctrine */
+    .doctrine-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 1fr;
+      gap: 56px;
+      align-items: start;
+    }
+
+    .doctrine-statement {
+      font-family: var(--font-display);
+      font-size: clamp(1.6rem, 2.8vw, 2.35rem);
+      font-weight: 400;
+      line-height: 1.22;
+      letter-spacing: -0.02em;
+      margin-bottom: 28px;
+    }
+
+    .doctrine-copy {
+      color: var(--paper-muted);
+      font-size: 1rem;
+      line-height: 1.7;
+      margin-bottom: 20px;
+      max-width: 56ch;
+    }
+
+    .spec-table {
+      border-top: 1px solid var(--paper-line);
+    }
+
+    .spec-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 16px;
+      padding: 18px 0;
+      border-bottom: 1px solid var(--paper-line);
+    }
+
+    .spec-key {
+      font-family: var(--font-mono);
+      font-size: 0.76rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--paper-muted);
+    }
+
+    .spec-val {
+      font-family: var(--font-mono);
+      font-size: 0.82rem;
+      font-weight: 500;
+      color: var(--ink);
+      text-align: right;
+    }
+
+    /* Engagement / CTA */
+    .engage-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      border-top: 1px solid var(--ink-line);
+      border-bottom: 1px solid var(--ink-line);
+    }
+
+    .engage-box {
+      padding: 48px 40px;
+      border-right: 1px solid var(--ink-line);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 32px;
+    }
+
+    .engage-box:first-child {
+      padding-left: 0;
+    }
+
+    .engage-box:last-child {
+      border-right: none;
+      padding-right: 0;
+    }
+
+    .engage-label {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--signal);
+      margin-bottom: 14px;
+    }
+
+    .engage-box h3 {
+      font-family: var(--font-display);
+      font-size: 1.85rem;
+      font-weight: 500;
+      letter-spacing: -0.02em;
+      margin-bottom: 14px;
+    }
+
+    .engage-box p {
+      color: var(--text-dim);
+      font-size: 0.96rem;
+      max-width: 46ch;
+      line-height: 1.65;
+    }
+
+    /* Footer */
     footer {
-      padding: 40px 0;
-      color: var(--muted);
-      font-size: 0.875rem;
+      background: var(--ink);
+      padding: 40px 0 48px;
+      font-family: var(--font-mono);
+      font-size: 0.74rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--text-dim);
     }
 
-    .footer-inner {
+    .footer-bar {
       display: flex;
       flex-wrap: wrap;
       justify-content: space-between;
+      align-items: center;
       gap: 16px;
     }
 
-    @media (max-width: 720px) {
+    .footer-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 24px;
+    }
+
+    /* Responsive */
+    @media (max-width: 980px) {
+      .hero-bottom,
+      .section-header,
+      .doctrine-grid,
+      .engage-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-actions {
+        justify-content: flex-start;
+      }
+
+      .telemetry-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .telemetry-cell {
+        padding: 18px 0;
+        border-right: none;
+        border-bottom: 1px solid var(--ink-line);
+      }
+
+      .pillars-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .pillar {
+        padding: 32px 0;
+        border-right: none;
+        border-bottom: 1px solid var(--paper-line);
+      }
+
+      .pillar:last-child {
+        border-bottom: none;
+      }
+
+      .program-row {
+        grid-template-columns: 1fr;
+        gap: 14px;
+      }
+
+      .program-status {
+        text-align: left;
+      }
+
+      .engage-box {
+        padding: 36px 0;
+        border-right: none;
+        border-bottom: 1px solid var(--ink-line);
+      }
+
+      .engage-box:last-child {
+        border-bottom: none;
+      }
+    }
+
+    @media (max-width: 680px) {
       .nav-links {
         display: none;
       }
-      .callout {
+
+      .telemetry-grid {
         grid-template-columns: 1fr;
       }
     }
@@ -258,79 +712,279 @@
 </head>
 <body>
   <header>
-    <div class="container nav">
-      <a href="#" class="logo">Igunosalabs</a>
-      <nav class="nav-links">
-        <a href="#mission">Mission</a>
-        <a href="#research">Research</a>
-        <a href="#open-use">Open Use</a>
+    <div class="container nav-bar">
+      <a href="#" class="brand">
+        <span class="brand-mark" aria-hidden="true"></span>
+        IGUNOSALABS
+      </a>
+      <nav class="nav-links" aria-label="Primary">
+        <a href="#thesis">01 / Thesis</a>
+        <a href="#programs">02 / Programs</a>
+        <a href="#doctrine">03 / Open License</a>
+        <a href="#engage">04 / Engage</a>
       </nav>
+      <a href="#engage" class="nav-cta">Briefing &rarr;</a>
     </div>
   </header>
 
   <main>
     <section class="hero">
-      <div class="container">
-        <span class="badge">NON-PROFIT R&amp;D LAB</span>
-        <h1>Advancing AI in the physical world.</h1>
-        <p>
-          Igunosalabs is an independent non-profit research organization dedicated to embodied intelligence, robotics, and real-world AI systems. Everything we discover is published openly—and free for others to build on commercially.
-        </p>
-        <div class="actions">
-          <a href="#research" class="btn btn-primary">Explore Research</a>
-          <a href="#open-use" class="btn btn-secondary">Commercial Use Policy</a>
+      <canvas id="field-canvas" aria-hidden="true"></canvas>
+      <div class="hero-vignette" aria-hidden="true"></div>
+      <div class="container hero-content">
+        <div class="hero-eyebrow">
+          <span class="status-dot" aria-hidden="true"></span>
+          <span>Non-Profit R&amp;D Institution // Physical-World AI</span>
         </div>
-      </div>
-    </section>
-
-    <section id="mission">
-      <div class="container">
-        <div class="section-label">Mission</div>
-        <h2>Bridging intelligence and physical reality</h2>
-        <p class="section-intro">
-          Digital intelligence has scaled rapidly, but operating reliably in unstructured physical environments remains one of the hardest open problems in engineering. We focus on foundational R&amp;D that moves AI out of screens and into the real world.
-        </p>
-      </div>
-    </section>
-
-    <section id="research">
-      <div class="container">
-        <div class="section-label">Focus Areas</div>
-        <h2>Core Research Pillars</h2>
-        <p class="section-intro">
-          Our work spans hardware-aware learning, sensorimotor control, and reproducible physical benchmarks.
-        </p>
-        <div class="grid">
-          <div class="card">
-            <h3>Embodied Control</h3>
-            <p>Policies and control architectures that enable robots to manipulate, navigate, and adapt under real-world physical constraints.</p>
-          </div>
-          <div class="card">
-            <h3>Physical Perception</h3>
-            <p>Multimodal sensing—vision, tactile, and proprioceptive fusion—built for noisy, dynamic environments.</p>
-          </div>
-          <div class="card">
-            <h3>Sim-to-Real Transfer</h3>
-            <p>Closing the reality gap with physically grounded simulation, system identification, and low-cost hardware validation.</p>
+        <h1>Intelligence for the physical world.</h1>
+        <div class="hero-bottom">
+          <p class="hero-lead">
+            Digital intelligence has scaled. Physical reality has not. Igunosalabs conducts foundational R&amp;D in embodied AI, control, and perception—releasing every breakthrough openly so industry can commercialize it without friction.
+          </p>
+          <div class="hero-actions">
+            <a href="#programs" class="btn btn-solid">
+              <span>Explore Programs</span>
+              <span>&rarr;</span>
+            </a>
+            <a href="#doctrine" class="btn btn-outline">
+              <span>Commercial Use Policy</span>
+              <span>&darr;</span>
+            </a>
           </div>
         </div>
       </div>
     </section>
 
-    <section id="open-use">
+    <div class="telemetry-strip">
+      <div class="container telemetry-grid">
+        <div class="telemetry-cell">
+          <div class="telemetry-label">Structure</div>
+          <div class="telemetry-val">Independent Non-Profit R&amp;D</div>
+        </div>
+        <div class="telemetry-cell">
+          <div class="telemetry-label">Domain</div>
+          <div class="telemetry-val">Embodied AI &amp; Robotics</div>
+        </div>
+        <div class="telemetry-cell">
+          <div class="telemetry-label">Output Policy</div>
+          <div class="telemetry-val">Open for Commercial Use</div>
+        </div>
+        <div class="telemetry-cell">
+          <div class="telemetry-label">System Time</div>
+          <div class="telemetry-val" id="utc-clock">UTC --:--:--</div>
+        </div>
+      </div>
+    </div>
+
+    <section id="thesis" class="section-paper">
       <div class="container">
-        <div class="callout">
+        <div class="section-header">
+          <div class="section-index">01 // Strategic Thesis</div>
           <div>
-            <div class="section-label">Open Commercialization</div>
-            <h2>Non-profit research. Commercial-ready.</h2>
-            <p style="color: var(--muted);">
-              As a non-profit, Igunosalabs exists to accelerate the entire field. Our papers, datasets, models, and reference designs can be adopted, modified, and deployed by startups, enterprises, and independent builders for commercial products.
+            <h2 class="section-title">Software solved the screen. Now intelligence must master matter.</h2>
+            <p class="section-sub">
+              The hardest bottlenecks in robotics—contact-rich control, edge reliability, and sim-to-real transfer—require long-horizon engineering that commercial timelines routinely abandon. We exist to solve them in the open.
             </p>
           </div>
-          <div class="callout-meta">
-            <div><strong>Entity:</strong> Igunosalabs (Non-Profit R&amp;D)</div>
-            <div><strong>Domain:</strong> Physical-World AI &amp; Robotics</div>
-            <div><strong>Findings:</strong> Open for Commercial Use</div>
+        </div>
+
+        <div class="pillars-grid">
+          <article class="pillar">
+            <div>
+              <div class="pillar-num">01 / UNCONSTRAINED</div>
+              <h3>Non-Profit Mandate</h3>
+              <p>
+                Free from venture exits and closed IP hoarding, our lab absorbs foundational technical risk that private teams cannot justify on a quarterly clock.
+              </p>
+            </div>
+            <div class="pillar-foot">Long-Horizon R&amp;D</div>
+          </article>
+
+          <article class="pillar">
+            <div>
+              <div class="pillar-num">02 / DETERMINISTIC</div>
+              <h3>Hardware-First Truth</h3>
+              <p>
+                Simulations lie. Every architecture we publish is validated against real actuators, noisy sensors, thermal limits, and strict edge latency budgets.
+              </p>
+            </div>
+            <div class="pillar-foot">Real-World Validation</div>
+          </article>
+
+          <article class="pillar">
+            <div>
+              <div class="pillar-num">03 / DEPLOYABLE</div>
+              <h3>Built for Industry</h3>
+              <p>
+                Research has impact only when it ships. Startups, industrial OEMs, and autonomous systems builders can adopt, modify, and commercialize our findings directly.
+              </p>
+            </div>
+            <div class="pillar-foot">Commercial-Ready Output</div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="programs" class="section-dark">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-index">02 // Active Programs</div>
+          <div>
+            <h2 class="section-title">Foundational capabilities engineered for physical deployment.</h2>
+            <p class="section-sub">
+              Our research is organized into modular systems spanning low-level actuation, real-time perception, and transferable hardware interfaces.
+            </p>
+          </div>
+        </div>
+
+        <div class="programs-list">
+          <div class="program-row">
+            <div class="program-code">IGL-01</div>
+            <div>
+              <div class="program-name">Sensorimotor Control</div>
+              <div class="program-domain">Manipulation &amp; Locomotion</div>
+            </div>
+            <p class="program-desc">
+              Closed-loop neural and hybrid control policies built for unstructured, contact-rich environments where traditional rigid kinematic models fail.
+            </p>
+            <div class="program-status">
+              <span class="tag"><span class="tag-dot"></span>Active</span>
+            </div>
+          </div>
+
+          <div class="program-row">
+            <div class="program-code">IGL-02</div>
+            <div>
+              <div class="program-name">Edge Perception</div>
+              <div class="program-domain">Multimodal Spatial Fusion</div>
+            </div>
+            <p class="program-desc">
+              Deterministic vision, tactile, and proprioceptive state estimation engineered to operate on power-constrained edge compute without cloud dependence.
+            </p>
+            <div class="program-status">
+              <span class="tag"><span class="tag-dot"></span>Active</span>
+            </div>
+          </div>
+
+          <div class="program-row">
+            <div class="program-code">IGL-03</div>
+            <div>
+              <div class="program-name">Sim-to-Real Transfer</div>
+              <div class="program-domain">System Identification</div>
+            </div>
+            <p class="program-desc">
+              High-throughput physics calibration and domain adaptation pipelines that translate simulated policies directly onto commodity robotic hardware.
+            </p>
+            <div class="program-status">
+              <span class="tag"><span class="tag-dot"></span>Validation</span>
+            </div>
+          </div>
+
+          <div class="program-row">
+            <div class="program-code">IGL-04</div>
+            <div>
+              <div class="program-name">Open Actuation Bus</div>
+              <div class="program-domain">Hardware &amp; Telemetry Spec</div>
+            </div>
+            <p class="program-desc">
+              Reproducible reference hardware designs and low-latency telemetry standards enabling commercial teams to integrate lab breakthroughs in weeks, not years.
+            </p>
+            <div class="program-status">
+              <span class="tag"><span class="tag-dot"></span>Open Spec</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="doctrine" class="section-paper">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-index">03 // Open Commercialization</div>
+          <div>
+            <h2 class="section-title">We do the research. You build the industry.</h2>
+          </div>
+        </div>
+
+        <div class="doctrine-grid">
+          <div>
+            <p class="doctrine-statement">
+              Igunosalabs is structured as a non-profit so our breakthroughs become public industrial infrastructure—not proprietary choke points.
+            </p>
+            <p class="doctrine-copy">
+              When we publish a model, control stack, benchmark, or reference hardware blueprint, commercial entities are explicitly encouraged to take it into production. No restrictive academic-only clauses. No hidden royalty traps.
+            </p>
+            <p class="doctrine-copy">
+              By removing the R&amp;D barrier at the base of the stack, we accelerate every company deploying intelligent machines into manufacturing, logistics, energy, and critical infrastructure.
+            </p>
+          </div>
+
+          <div class="spec-table">
+            <div class="spec-row">
+              <span class="spec-key">Entity Classification</span>
+              <span class="spec-val">Non-Profit R&amp;D Lab</span>
+            </div>
+            <div class="spec-row">
+              <span class="spec-key">Research Publications</span>
+              <span class="spec-val">Public &amp; Reproducible</span>
+            </div>
+            <div class="spec-row">
+              <span class="spec-key">Weights &amp; Codebases</span>
+              <span class="spec-val">Commercial Use Permitted</span>
+            </div>
+            <div class="spec-row">
+              <span class="spec-key">Hardware Reference Specs</span>
+              <span class="spec-val">Open Adoption</span>
+            </div>
+            <div class="spec-row">
+              <span class="spec-key">Royalties / Licensing Fees</span>
+              <span class="spec-val">None</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="engage" class="section-dark">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-index">04 // Engage</div>
+          <div>
+            <h2 class="section-title">Deploy our research or back the next program.</h2>
+          </div>
+        </div>
+
+        <div class="engage-grid">
+          <div class="engage-box">
+            <div>
+              <div class="engage-label">For Engineering Teams &amp; OEMs</div>
+              <h3>Commercialize Igunosalabs R&amp;D</h3>
+              <p>
+                Integrating physical-world AI into production hardware? Access our technical releases, benchmarks, and reference implementations with full commercial rights.
+              </p>
+            </div>
+            <div>
+              <a href="mailto:research@igunosalabs.org?subject=Commercial%20Adoption%20Inquiry" class="btn btn-solid">
+                <span>Request Technical Brief</span>
+                <span>&rarr;</span>
+              </a>
+            </div>
+          </div>
+
+          <div class="engage-box">
+            <div>
+              <div class="engage-label">For Patrons, Grants &amp; Labs</div>
+              <h3>Fund Open Physical AI</h3>
+              <p>
+                Partner with Igunosalabs to sponsor dedicated hardware programs, compute clusters, or open benchmarks that advance the entire field.
+              </p>
+            </div>
+            <div>
+              <a href="mailto:partners@igunosalabs.org?subject=Research%20Sponsorship%20Inquiry" class="btn btn-outline">
+                <span>Initiate Partnership</span>
+                <span>&rarr;</span>
+              </a>
+            </div>
           </div>
         </div>
       </div>
@@ -338,10 +992,120 @@
   </main>
 
   <footer>
-    <div class="container footer-inner">
-      <span>&copy; 2026 Igunosalabs</span>
-      <span>robotics.dexx.systems</span>
+    <div class="container footer-bar">
+      <div>&copy; 2026 IGUNOSALABS — ALL RESEARCH OPEN FOR COMMERCIAL USE</div>
+      <div class="footer-meta">
+        <span>ROBOTICS.DEXX.SYSTEMS</span>
+        <span>NON-PROFIT R&amp;D</span>
+      </div>
     </div>
   </footer>
+
+  <script>
+    // Live UTC telemetry clock
+    const clockEl = document.getElementById('utc-clock');
+    function updateClock() {
+      const now = new Date();
+      const pad = (n) => String(n).padStart(2, '0');
+      clockEl.textContent = `UTC ${pad(now.getUTCHours())}:${pad(now.getUTCMinutes())}:${pad(now.getUTCSeconds())}`;
+    }
+    updateClock();
+    setInterval(updateClock, 1000);
+
+    // Subtle precision kinematic / spatial-field mesh in Hero
+    const canvas = document.getElementById('field-canvas');
+    const ctx = canvas.getContext('2d');
+    let width = 0;
+    let height = 0;
+    let dpr = Math.min(window.devicePixelRatio || 1, 2);
+    let mouse = { x: 0.72, y: 0.36 };
+
+    function resize() {
+      width = canvas.clientWidth;
+      height = canvas.clientHeight;
+      canvas.width = Math.floor(width * dpr);
+      canvas.height = Math.floor(height * dpr);
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    }
+
+    window.addEventListener('resize', resize);
+    window.addEventListener('mousemove', (e) => {
+      mouse.x = e.clientX / Math.max(window.innerWidth, 1);
+      mouse.y = e.clientY / Math.max(window.innerHeight, 1);
+    });
+    resize();
+
+    function draw(time) {
+      const t = time * 0.00045;
+      ctx.clearRect(0, 0, width, height);
+
+      // Subtle architectural grid
+      const step = 64;
+      ctx.strokeStyle = 'rgba(255, 255, 255, 0.045)';
+      ctx.lineWidth = 1;
+      ctx.beginPath();
+      for (let x = 0; x < width; x += step) {
+        ctx.moveTo(x + 0.5, 0);
+        ctx.lineTo(x + 0.5, height);
+      }
+      for (let y = 0; y < height; y += step) {
+        ctx.moveTo(0, y + 0.5);
+        ctx.lineTo(width, y + 0.5);
+      }
+      ctx.stroke();
+
+      // Dynamic kinematic wave contours (lidar / terrain elevation aesthetic)
+      const rows = 26;
+      const cols = 42;
+      const originX = width * 0.12;
+      const spanX = width * 0.88;
+      const originY = height * 0.16;
+      const spanY = height * 0.64;
+
+      for (let r = 0; r < rows; r++) {
+        const v = r / (rows - 1);
+        ctx.beginPath();
+        for (let c = 0; c < cols; c++) {
+          const u = c / (cols - 1);
+          const x = originX + u * spanX;
+          const dx = u - mouse.x;
+          const dy = v - mouse.y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          const wave =
+            Math.sin(u * 6.5 + t * 2.1 + v * 2.4) * 14 +
+            Math.cos(v * 5.2 - t * 1.4) * 10 +
+            Math.exp(-dist * 5.5) * 28;
+          const y = originY + v * spanY + wave;
+
+          if (c === 0) ctx.moveTo(x, y);
+          else ctx.lineTo(x, y);
+        }
+        const alpha = 0.06 + (1 - Math.abs(v - 0.45)) * 0.14;
+        ctx.strokeStyle = `rgba(244, 244, 241, ${alpha.toFixed(3)})`;
+        ctx.lineWidth = 1;
+        ctx.stroke();
+      }
+
+      // Precision reticle crosshair near focal region
+      const rx = Math.round(width * (0.72 + (mouse.x - 0.5) * 0.04));
+      const ry = Math.round(height * (0.34 + (mouse.y - 0.5) * 0.04));
+      ctx.strokeStyle = 'rgba(217, 78, 31, 0.55)';
+      ctx.lineWidth = 1;
+      ctx.beginPath();
+      ctx.moveTo(rx - 14, ry + 0.5);
+      ctx.lineTo(rx - 5, ry + 0.5);
+      ctx.moveTo(rx + 5, ry + 0.5);
+      ctx.lineTo(rx + 14, ry + 0.5);
+      ctx.moveTo(rx + 0.5, ry - 14);
+      ctx.lineTo(rx + 0.5, ry - 5);
+      ctx.moveTo(rx + 0.5, ry + 5);
+      ctx.lineTo(rx + 0.5, ry + 14);
+      ctx.stroke();
+
+      requestAnimationFrame(draw);
+    }
+
+    requestAnimationFrame(draw);
+  </script>
 </body>
 </html>
