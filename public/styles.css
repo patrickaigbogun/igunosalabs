@@ -284,13 +284,24 @@ header {
   flex-shrink: 0;
 }
 
+.icon-svg {
+  width: 18px;
+  height: 18px;
+  display: inline-block;
+  flex-shrink: 0;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.75;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
 .icon-btn {
   width: 48px;
   height: 48px;
   background: transparent;
   border: 1px solid rgba(255, 255, 255, 0.22);
   color: var(--text-light);
-  font-size: 1.15rem;
   display: inline-flex;
   align-items: center;
   justify-content: center;
