@@ -546,16 +546,6 @@ footer {
   color: var(--text-light);
 }
 
-.stage-pill {
-  display: inline-block;
-  padding: 6px 14px;
-  border: 1px solid rgba(255, 255, 255, 0.25);
-  font-size: 0.8rem;
-  font-weight: 500;
-  color: rgba(245, 245, 243, 0.86);
-  margin-bottom: 20px;
-}
-
 .project-body {
   background: var(--white);
   color: var(--text-dark);
