@@ -13,6 +13,7 @@ RUN mkdir -p /app/models && \
 
 COPY server.py ./
 COPY public ./public
+RUN pip install --no-cache-dir requests
 
 EXPOSE 80
 CMD ["uvicorn", "server:app", "--host", "0.0.0.0", "--port", "80", "--workers", "1"]
