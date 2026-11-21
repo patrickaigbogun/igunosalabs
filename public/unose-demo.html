@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Unose-Huen Live Demo — Igunosalabs</title>
+  <meta name="description" content="Try Unose-Huen-Small and Unose-Huen-Base live in your browser — Nigerian English and Nigerian Pidgin speech recognition by Igunosalabs." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Plus+Jakarta+Sans:wght@500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/styles.css" />
+  <style>
+    .demo-section {
+      min-height: 100svh;
+      padding: 120px 0 80px;
+      background: var(--black);
+      color: var(--text-light);
+      display: flex;
+      align-items: center;
+    }
+
+    .demo-wrap {
+      max-width: 780px;
+    }
+
+    .demo-panel {
+      margin-top: 40px;
+      border: 1px solid var(--line-light);
+      background: var(--surface);
+      padding: clamp(24px, 4vw, 40px);
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+    }
+
+    .model-switch {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
+
+    .model-opt {
+      padding: 16px 18px;
+      border: 1px solid var(--line-light);
+      background: transparent;
+      color: var(--text-light);
+      text-align: left;
+      cursor: pointer;
+      font-family: var(--font-sans);
+      transition: border-color 0.18s ease, background 0.18s ease;
+    }
+
+    .model-opt.active {
+      border-color: var(--text-light);
+      background: rgba(255, 255, 255, 0.06);
+    }
+
+    .model-opt strong {
+      display: block;
+      font-size: 0.98rem;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .model-opt span {
+      font-size: 0.85rem;
+      color: var(--muted-light);
+    }
+
+    .controls-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .btn-recording {
+      background: #dc2626;
+      color: #ffffff;
+      border-color: #dc2626;
+    }
+
+    .btn-recording:hover {
+      background: #b91c1c;
+    }
+
+    .file-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 15px 24px;
+      border: 1px solid rgba(255, 255, 255, 0.28);
+      color: var(--text-light);
+      font-size: 0.92rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: border-color 0.18s ease;
+    }
+
+    .file-label:hover {
+      border-color: var(--text-light);
+    }
+
+    .file-label input {
+      display: none;
+    }
+
+    .demo-status {
+      font-size: 0.9rem;
+      color: var(--muted-light);
+      min-height: 22px;
+    }
+
+    .demo-status.err {
+      color: #f87171;
+    }
+
+    .transcript-box {
+      border-top: 1px solid var(--line-light);
+      padding-top: 24px;
+    }
+
+    .transcript-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 12px;
+      font-size: 0.85rem;
+      color: var(--muted-light);
+    }
+
+    .transcript-output {
+      min-height: 96px;
+      font-size: 1.15rem;
+      line-height: 1.65;
+      color: var(--text-light);
+      white-space: pre-wrap;
+    }
+
+    .transcript-placeholder {
+      color: var(--muted-light);
+    }
+
+    @media (max-width: 600px) {
+      .model-switch {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <a href="/" class="brand">Igunosalabs</a>
+      <nav class="nav-links" aria-label="Primary">
+        <a href="/#development">Development</a>
+        <a href="/#projects">Projects</a>
+        <a href="/#open">Open Use</a>
+        <a href="/#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="demo-section">
+      <div class="container">
+        <div class="demo-wrap">
+          <a href="/projects/unose" class="back-link">
+            <svg class="icon-svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M19 12H5"/><path d="m12 19-7-7 7-7"/></svg>
+            Back to Unose
+          </a>
+          <h1 class="display-h2" style="margin-bottom: 16px;">Try Unose-Huen.</h1>
+          <p class="lead-copy">
+            Speak naturally in Nigerian English or Nigerian Pidgin, or upload a short audio clip (up to 45 seconds).
+          </p>
+
+          <div class="demo-panel">
+            <div class="model-switch" role="radiogroup" aria-label="Choose model">
+              <button type="button" class="model-opt active" data-model="small">
+                <strong>Unose-Huen-Small</strong>
+                <span>244M parameters &middot; Higher accuracy</span>
+              </button>
+              <button type="button" class="model-opt" data-model="base">
+                <strong>Unose-Huen-Base</strong>
+                <span>74M parameters &middot; Faster</span>
+              </button>
+            </div>
+
+            <div class="controls-row">
+              <button type="button" id="record-btn" class="btn btn-white">
+                <svg class="icon-svg" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/>
+                  <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
+                  <line x1="12" x2="12" y1="19" y2="22"/>
+                </svg>
+                <span id="record-label">Record Audio</span>
+              </button>
+
+              <label class="file-label">
+                <svg class="icon-svg" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                  <polyline points="17 8 12 3 7 8"/>
+                  <line x1="12" x2="12" y1="3" y2="15"/>
+                </svg>
+                <span>Upload Audio</span>
+                <input type="file" id="file-input" accept="audio/*" />
+              </label>
+            </div>
+
+            <div id="demo-status" class="demo-status" role="status" aria-live="polite"></div>
+
+            <div class="transcript-box">
+              <div class="transcript-meta">
+                <span>Transcript</span>
+                <span id="timing-meta"></span>
+              </div>
+              <div id="transcript-output" class="transcript-output transcript-placeholder">
+                Your transcription will appear here.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    let selectedModel = 'small';
+    let mediaRecorder = null;
+    let chunks = [];
+    let isRecording = false;
+
+    const modelBtns = document.querySelectorAll('.model-opt');
+    const recordBtn = document.getElementById('record-btn');
+    const recordLabel = document.getElementById('record-label');
+    const fileInput = document.getElementById('file-input');
+    const statusEl = document.getElementById('demo-status');
+    const outputEl = document.getElementById('transcript-output');
+    const timingEl = document.getElementById('timing-meta');
+
+    modelBtns.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        modelBtns.forEach((b) => b.classList.remove('active'));
+        btn.classList.add('active');
+        selectedModel = btn.dataset.model;
+      });
+    });
+
+    async function sendAudio(blob, filename) {
+      statusEl.textContent = 'Transcribing...';
+      statusEl.className = 'demo-status';
+      timingEl.textContent = '';
+
+      const form = new FormData();
+      form.append('audio', blob, filename);
+      form.append('model', selectedModel);
+
+      try {
+        const resp = await fetch('/api/transcribe', { method: 'POST', body: form });
+        const data = await resp.json();
+        if (!resp.ok || !data.ok) {
+          throw new Error(data.error || 'Transcription failed.');
+        }
+        outputEl.textContent = data.text || '(No speech detected)';
+        outputEl.classList.remove('transcript-placeholder');
+        timingEl.textContent = `${data.model} · ${data.duration}s audio in ${data.seconds}s`;
+        statusEl.textContent = '';
+      } catch (err) {
+        statusEl.textContent = err.message || 'Could not transcribe audio.';
+        statusEl.className = 'demo-status err';
+      }
+    }
+
+    recordBtn.addEventListener('click', async () => {
+      if (isRecording && mediaRecorder) {
+        mediaRecorder.stop();
+        return;
+      }
+
+      try {
+        const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+        chunks = [];
+        mediaRecorder = new MediaRecorder(stream);
+        mediaRecorder.ondataavailable = (e) => {
+          if (e.data.size > 0) chunks.push(e.data);
+        };
+        mediaRecorder.onstop = () => {
+          isRecording = false;
+          recordBtn.classList.remove('btn-recording');
+          recordBtn.classList.add('btn-white');
+          recordLabel.textContent = 'Record Audio';
+          stream.getTracks().forEach((t) => t.stop());
+          const blob = new Blob(chunks, { type: mediaRecorder.mimeType || 'audio/webm' });
+          sendAudio(blob, 'recording.webm');
+        };
+
+        mediaRecorder.start();
+        isRecording = true;
+        recordBtn.classList.remove('btn-white');
+        recordBtn.classList.add('btn-recording');
+        recordLabel.textContent = 'Stop Recording';
+        statusEl.textContent = 'Listening...';
+        statusEl.className = 'demo-status';
+      } catch {
+        statusEl.textContent = 'Microphone permission denied or unavailable.';
+        statusEl.className = 'demo-status err';
+      }
+    });
+
+    fileInput.addEventListener('change', () => {
+      const file = fileInput.files && fileInput.files[0];
+      if (!file) return;
+      sendAudio(file, file.name);
+      fileInput.value = '';
+    });
+  </script>
+</body>
+</html>
