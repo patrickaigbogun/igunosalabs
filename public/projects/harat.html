@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Harat — Igunosalabs</title>
+  <meta name="description" content="Harat provides persistent long-term memory for AI agents across harnesses and conversations, surviving compactions and cache TTLs." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Plus+Jakarta+Sans:wght@500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <a href="/" class="brand">Igunosalabs</a>
+      <nav class="nav-links" aria-label="Primary">
+        <a href="/#development">Development</a>
+        <a href="/#projects">Projects</a>
+        <a href="/#open">Open Use</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="project-hero">
+      <img src="/assets/project-harat.jpg" alt="Harat persistent AI memory architecture" />
+      <div class="container project-hero-inner">
+        <a href="/#projects" class="back-link">&larr; All Projects</a>
+        <div><span class="stage-pill">Closed Beta</span></div>
+        <h1 class="display-h2" style="margin-bottom: 18px;">Harat</h1>
+        <p class="lead-copy" style="color: rgba(245, 245, 243, 0.85);">
+          Long-term memory for AI agents across harnesses and conversations—built to survive compactions and cache TTLs.
+        </p>
+      </div>
+    </section>
+
+    <section class="project-body">
+      <div class="container project-prose">
+        <h2>Tell an agent once.</h2>
+        <p>
+          Modern AI agents lose critical context the moment a session compacts, a prompt cache expires, or you move between tools and harnesses. Repeating the same rules, architecture decisions, and preferences breaks continuity and slows down real engineering work.
+        </p>
+        <p>
+          Harat is a persistent memory layer designed to follow agents across harnesses and across separate conversations within the same harness. It retains verified context cleanly past compactions and cache TTLs so agents actually remember what matters.
+        </p>
+        <p>
+          Currently in closed beta and active iteration—open for builders and teams looking to integrate durable memory into their agent workflows.
+        </p>
+      </div>
+    </section>
+
+    <section id="contact" class="closing">
+      <div class="container closing-inner">
+        <h2 class="display-h2">Discuss Harat.</h2>
+        <p class="lead-copy">
+          Want early access to the closed beta or interested in integrating Harat into your agent stack? Leave your email and we’ll reach out directly.
+        </p>
+
+        <form id="contact-form" class="contact-form" novalidate>
+          <input type="hidden" name="project" value="Harat" />
+          <div class="form-row">
+            <input type="email" name="email" class="input-field" placeholder="you@company.com" required autocomplete="email" />
+            <button type="submit" class="btn btn-white">Reach Out</button>
+          </div>
+          <div id="form-status" class="form-status" role="status" aria-live="polite"></div>
+        </form>
+      </div>
+
+      <div class="container">
+        <footer>
+          <span>&copy; 2026 Igunosalabs</span>
+          <span>robotics.dexx.systems</span>
+        </footer>
+      </div>
+    </section>
+  </main>
+
+  <script src="/contact.js"></script>
+</body>
+</html>

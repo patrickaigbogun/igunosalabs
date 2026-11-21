@@ -1,4 +1,6 @@
-FROM nginx:alpine
-COPY index.html /usr/share/nginx/html/index.html
-COPY assets /usr/share/nginx/html/assets
+FROM node:22-alpine
+WORKDIR /app
+COPY server.js ./
+COPY public ./public
 EXPOSE 80
+CMD ["node", "server.js"]

@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Igunosalabs</title>
+  <meta name="description" content="Igunosalabs is a non-profit R&D lab advancing AI in the physical world. Our findings are open for commercial use." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Plus+Jakarta+Sans:wght@500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <a href="/" class="brand">Igunosalabs</a>
+      <nav class="nav-links" aria-label="Primary">
+        <a href="#development">Development</a>
+        <a href="#projects">Projects</a>
+        <a href="#open">Open Use</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- 1. Full-bleed Hero (no isometric visual here) -->
+    <section class="hero">
+      <div class="hero-media" aria-hidden="true">
+        <img src="/assets/hero-bg.jpg" alt="" />
+      </div>
+      <div class="hero-scrim" aria-hidden="true"></div>
+      <div class="container hero-inner">
+        <h1>AI for the physical world.</h1>
+        <p>
+          Non-profit R&amp;D building physical-world AI that others can take to market.
+        </p>
+        <div class="hero-actions">
+          <a href="#projects" class="btn btn-white">Explore Projects</a>
+          <a href="#contact" class="btn btn-outline-light">Discuss a Project</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. Where We Are + Isometric 3D Code Animation -->
+    <section id="development" class="section-light">
+      <div class="container split-stage">
+        <div>
+          <h2 class="display-h2">In active development.</h2>
+          <p class="lead-copy">
+            We are in early stages of iteration—building proof of concepts and closed-beta systems engineered to leave the lab and operate in the real world.
+          </p>
+        </div>
+
+        <div class="iso-stage" aria-label="Isometric autonomous swarm schematic animation">
+          <canvas id="iso-canvas"></canvas>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. Swipeable Project Cards -->
+    <section id="projects" class="section-dark">
+      <div class="container">
+        <div class="cards-header">
+          <h2>Projects</h2>
+          <div class="carousel-controls">
+            <button class="icon-btn" id="prev-card" aria-label="Previous project">&larr;</button>
+            <button class="icon-btn" id="next-card" aria-label="Next project">&rarr;</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="cards-track" id="cards-track">
+        <a href="/projects/egwe" class="project-card">
+          <img src="/assets/project-egwe.jpg" alt="Egwe autonomous drone swarm in Harmattan dusk" loading="lazy" />
+          <div class="card-content">
+            <div class="card-top-row">
+              <h3>Egwe</h3>
+              <span class="card-arrow">&rarr;</span>
+            </div>
+            <p>A hive-mind drone swarm model trained for Nigerian atmospheric and climate conditions.</p>
+          </div>
+        </a>
+
+        <a href="/projects/harat" class="project-card">
+          <img src="/assets/project-harat.jpg" alt="Harat persistent AI memory architecture" loading="lazy" />
+          <div class="card-content">
+            <div class="card-top-row">
+              <h3>Harat</h3>
+              <span class="card-arrow">&rarr;</span>
+            </div>
+            <p>Long-term memory for AI agents that survives compactions, cache TTLs, and harness switches.</p>
+          </div>
+        </a>
+
+        <a href="/projects/unose" class="project-card">
+          <img src="/assets/project-unose.jpg" alt="Unose studio acoustic hardware" loading="lazy" />
+          <div class="card-content">
+            <div class="card-top-row">
+              <h3>Unose</h3>
+              <span class="card-arrow">&rarr;</span>
+            </div>
+            <p>A family of speech models trained to understand and speak Nigerian Pidgin and English at SOTA accuracy.</p>
+          </div>
+        </a>
+
+        <a href="/projects/ax" class="project-card">
+          <img src="/assets/project-ax.jpg" alt="AX post-chat agentic interface research" loading="lazy" />
+          <div class="card-content">
+            <div class="card-top-row">
+              <h3>AX</h3>
+              <span class="card-arrow">&rarr;</span>
+            </div>
+            <p>An ongoing working thesis on why the chat box is not the endgame for agent-driven interfaces.</p>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <!-- 4. What We Stand For -->
+    <section id="open" class="section-light">
+      <div class="container">
+        <div style="max-width: 960px;">
+          <h2 class="display-h2">Research without the wall.</h2>
+          <p class="lead-copy">
+            Igunosalabs operates as a non-profit so our findings don’t sit behind closed doors. Startups, engineers, and commercial teams can build on our work directly—and we welcome partners across funding, deployment, and collaboration.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. Closing CTA + Email Capture -->
+    <section id="contact" class="closing">
+      <div class="container closing-inner">
+        <h2 class="display-h2">Interested in a project?</h2>
+        <p class="lead-copy">
+          Leave your email and pick what caught your eye. We will reach out to you directly.
+        </p>
+
+        <form id="contact-form" class="contact-form" novalidate>
+          <select name="project" class="select-field" aria-label="Project of interest">
+            <option value="General">General / Open to opportunities</option>
+            <option value="Egwe">Egwe — Drone Swarm</option>
+            <option value="Harat">Harat — Agent Memory</option>
+            <option value="Unose">Unose — Speech Models</option>
+            <option value="AX">AX — Agentic Experience Thesis</option>
+          </select>
+
+          <div class="form-row">
+            <input
+              type="email"
+              name="email"
+              class="input-field"
+              placeholder="you@company.com"
+              required
+              autocomplete="email"
+            />
+            <button type="submit" class="btn btn-white">Reach Out</button>
+          </div>
+
+          <div id="form-status" class="form-status" role="status" aria-live="polite"></div>
+        </form>
+      </div>
+
+      <div class="container">
+        <footer>
+          <span>&copy; 2026 Igunosalabs</span>
+          <span>robotics.dexx.systems</span>
+        </footer>
+      </div>
+    </section>
+  </main>
+
+  <script src="/contact.js"></script>
+  <script>
+    // Swipeable cards carousel controls & drag-to-scroll
+    const track = document.getElementById('cards-track');
+    const prevBtn = document.getElementById('prev-card');
+    const nextBtn = document.getElementById('next-card');
+
+    function scrollByCard(dir) {
+      const card = track.querySelector('.project-card');
+      const step = card ? card.offsetWidth + 24 : 420;
+      track.scrollBy({ left: dir * step, behavior: 'smooth' });
+    }
+
+    prevBtn.addEventListener('click', () => scrollByCard(-1));
+    nextBtn.addEventListener('click', () => scrollByCard(1));
+
+    let isDown = false;
+    let dragged = false;
+    let startX = 0;
+    let scrollLeft = 0;
+
+    track.addEventListener('mousedown', (e) => {
+      isDown = true;
+      dragged = false;
+      startX = e.pageX - track.offsetLeft;
+      scrollLeft = track.scrollLeft;
+    });
+    window.addEventListener('mouseup', () => { isDown = false; });
+    track.addEventListener('mousemove', (e) => {
+      if (!isDown) return;
+      const x = e.pageX - track.offsetLeft;
+      if (Math.abs(x - startX) > 6) dragged = true;
+      if (!dragged) return;
+      e.preventDefault();
+      track.scrollLeft = scrollLeft - (x - startX) * 1.4;
+    });
+    track.querySelectorAll('a').forEach((link) => {
+      link.addEventListener('click', (e) => {
+        if (dragged) e.preventDefault();
+      });
+    });
+
+    // Lightweight Epirus-style Isometric 3D Looping Schematic (ink-on-paper palette)
+    const canvas = document.getElementById('iso-canvas');
+    const ctx = canvas.getContext('2d');
+    let W = 0;
+    let H = 0;
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+
+    function resize() {
+      W = canvas.clientWidth;
+      H = canvas.clientHeight;
+      canvas.width = Math.floor(W * dpr);
+      canvas.height = Math.floor(H * dpr);
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    }
+
+    window.addEventListener('resize', resize);
+    resize();
+
+    function project(x, y, z, scale, cx, cy) {
+      const cos30 = 0.8660254;
+      const sin30 = 0.5;
+      return [
+        cx + (x - y) * cos30 * scale,
+        cy + (x + y) * sin30 * scale - z * scale,
+      ];
+    }
+
+    function drawBox(x, y, z, dx, dy, dz, scale, cx, cy) {
+      const p000 = project(x, y, z, scale, cx, cy);
+      const p100 = project(x + dx, y, z, scale, cx, cy);
+      const p110 = project(x + dx, y + dy, z, scale, cx, cy);
+      const p010 = project(x, y + dy, z, scale, cx, cy);
+      const p001 = project(x, y, z + dz, scale, cx, cy);
+      const p101 = project(x + dx, y, z + dz, scale, cx, cy);
+      const p111 = project(x + dx, y + dy, z + dz, scale, cx, cy);
+      const p011 = project(x, y + dy, z + dz, scale, cx, cy);
+
+      ctx.strokeStyle = 'rgba(10, 11, 13, 0.35)';
+      ctx.lineWidth = 1;
+
+      ctx.beginPath();
+      ctx.moveTo(...p010); ctx.lineTo(...p110); ctx.lineTo(...p111); ctx.lineTo(...p011);
+      ctx.closePath();
+      ctx.fillStyle = 'rgba(10, 11, 13, 0.08)';
+      ctx.fill();
+      ctx.stroke();
+
+      ctx.beginPath();
+      ctx.moveTo(...p100); ctx.lineTo(...p110); ctx.lineTo(...p111); ctx.lineTo(...p101);
+      ctx.closePath();
+      ctx.fillStyle = 'rgba(10, 11, 13, 0.14)';
+      ctx.fill();
+      ctx.stroke();
+
+      ctx.beginPath();
+      ctx.moveTo(...p001); ctx.lineTo(...p101); ctx.lineTo(...p111); ctx.lineTo(...p011);
+      ctx.closePath();
+      ctx.fillStyle = 'rgba(10, 11, 13, 0.04)';
+      ctx.fill();
+      ctx.stroke();
+    }
+
+    function drawRing(radius, z, scale, cx, cy, color, lineWidth = 1) {
+      const segs = 64;
+      ctx.beginPath();
+      for (let i = 0; i <= segs; i++) {
+        const a = (i / segs) * Math.PI * 2;
+        const [sx, sy] = project(Math.cos(a) * radius, Math.sin(a) * radius, z, scale, cx, cy);
+        if (i === 0) ctx.moveTo(sx, sy);
+        else ctx.lineTo(sx, sy);
+      }
+      ctx.strokeStyle = color;
+      ctx.lineWidth = lineWidth;
+      ctx.stroke();
+    }
+
+    function render(ms) {
+      const t = ms * 0.001;
+      ctx.clearRect(0, 0, W, H);
+
+      const scale = Math.min(W, H) * 0.08;
+      const cx = W * 0.5;
+      const cy = H * 0.62;
+
+      // Ground grid
+      const gridHalf = 5;
+      ctx.lineWidth = 1;
+      ctx.strokeStyle = 'rgba(10, 11, 13, 0.08)';
+      ctx.beginPath();
+      for (let i = -gridHalf; i <= gridHalf; i++) {
+        const a1 = project(i, -gridHalf, 0, scale, cx, cy);
+        const a2 = project(i, gridHalf, 0, scale, cx, cy);
+        ctx.moveTo(a1[0], a1[1]); ctx.lineTo(a2[0], a2[1]);
+        const b1 = project(-gridHalf, i, 0, scale, cx, cy);
+        const b2 = project(gridHalf, i, 0, scale, cx, cy);
+        ctx.moveTo(b1[0], b1[1]); ctx.lineTo(b2[0], b2[1]);
+      }
+      ctx.stroke();
+
+      // Expanding pulse rings
+      for (let k = 0; k < 3; k++) {
+        const phase = (t * 0.42 + k / 3) % 1;
+        const r = 1.2 + phase * 4.2;
+        const alpha = (1 - phase) * 0.36;
+        drawRing(r, 0.04 + phase * 0.25, scale, cx, cy, `rgba(10, 11, 13, ${alpha.toFixed(3)})`, 1.2);
+      }
+
+      // Central isometric platform
+      drawBox(-1.3, -1.3, 0, 2.6, 2.6, 0.3, scale, cx, cy);
+      drawBox(-0.8, -0.8, 0.3, 1.6, 1.6, 0.42, scale, cx, cy);
+
+      // Rotating top emitter/sensor plane
+      const yaw = t * 0.52;
+      const cz = 1.3;
+      const corners = [
+        [-0.55, 0, -0.35],
+        [ 0.55, 0, -0.35],
+        [ 0.55, 0,  0.35],
+        [-0.55, 0,  0.35],
+      ].map(([lx, ly, lz]) => {
+        const rx = lx * Math.cos(yaw) - ly * Math.sin(yaw);
+        const ry = lx * Math.sin(yaw) + ly * Math.cos(yaw);
+        return project(rx, ry, cz + lz, scale, cx, cy);
+      });
+
+      const stemB = project(0, 0, 0.72, scale, cx, cy);
+      const stemT = project(0, 0, cz - 0.35, scale, cx, cy);
+      ctx.beginPath();
+      ctx.moveTo(stemB[0], stemB[1]);
+      ctx.lineTo(stemT[0], stemT[1]);
+      ctx.strokeStyle = 'rgba(10, 11, 13, 0.6)';
+      ctx.lineWidth = 2;
+      ctx.stroke();
+
+      ctx.beginPath();
+      ctx.moveTo(...corners[0]);
+      corners.slice(1).forEach((p) => ctx.lineTo(...p));
+      ctx.closePath();
+      ctx.fillStyle = 'rgba(10, 11, 13, 0.12)';
+      ctx.fill();
+      ctx.strokeStyle = 'rgba(10, 11, 13, 0.85)';
+      ctx.lineWidth = 1.3;
+      ctx.stroke();
+
+      // Sweeping beam cone
+      const beamLen = 3.8;
+      const spread = 0.34;
+      const origin = project(0, 0, cz, scale, cx, cy);
+      const bL = project(Math.sin(yaw - spread) * beamLen, -Math.cos(yaw - spread) * beamLen, cz + 0.85, scale, cx, cy);
+      const bR = project(Math.sin(yaw + spread) * beamLen, -Math.cos(yaw + spread) * beamLen, cz + 0.85, scale, cx, cy);
+
+      const grad = ctx.createLinearGradient(origin[0], origin[1], (bL[0] + bR[0]) * 0.5, (bL[1] + bR[1]) * 0.5);
+      grad.addColorStop(0, 'rgba(10, 11, 13, 0.16)');
+      grad.addColorStop(1, 'rgba(10, 11, 13, 0)');
+      ctx.beginPath();
+      ctx.moveTo(origin[0], origin[1]);
+      ctx.lineTo(bL[0], bL[1]);
+      ctx.lineTo(bR[0], bR[1]);
+      ctx.closePath();
+      ctx.fillStyle = grad;
+      ctx.fill();
+
+      // Orbiting swarm nodes + inter-node hive links
+      const drones = [
+        { r: 3.0, speed: 0.44, offset: 0.4, z: 2.35 },
+        { r: 3.7, speed: -0.32, offset: 2.4, z: 2.8 },
+        { r: 2.4, speed: 0.56, offset: 4.3, z: 1.95 },
+      ].map((d) => {
+        const ang = t * d.speed + d.offset;
+        const dx = Math.cos(ang) * d.r;
+        const dy = Math.sin(ang) * d.r;
+        const dz = d.z + Math.sin(t * 2 + d.offset) * 0.14;
+        return { dx, dy, dz, g: project(dx, dy, 0, scale, cx, cy), a: project(dx, dy, dz, scale, cx, cy) };
+      });
+
+      // Subtle hive mesh links between drones
+      ctx.beginPath();
+      for (let i = 0; i < drones.length; i++) {
+        const next = drones[(i + 1) % drones.length];
+        ctx.moveTo(drones[i].a[0], drones[i].a[1]);
+        ctx.lineTo(next.a[0], next.a[1]);
+      }
+      ctx.strokeStyle = 'rgba(10, 11, 13, 0.16)';
+      ctx.lineWidth = 1;
+      ctx.stroke();
+
+      drones.forEach((d) => {
+        ctx.beginPath();
+        ctx.setLineDash([3, 4]);
+        ctx.moveTo(d.g[0], d.g[1]);
+        ctx.lineTo(d.a[0], d.a[1]);
+        ctx.strokeStyle = 'rgba(10, 11, 13, 0.2)';
+        ctx.lineWidth = 1;
+        ctx.stroke();
+        ctx.setLineDash([]);
+
+        ctx.beginPath();
+        ctx.arc(d.g[0], d.g[1], 2.5, 0, Math.PI * 2);
+        ctx.fillStyle = 'rgba(10, 11, 13, 0.32)';
+        ctx.fill();
+
+        const arm = 0.26;
+        const p1 = project(d.dx - arm, d.dy, d.dz, scale, cx, cy);
+        const p2 = project(d.dx + arm, d.dy, d.dz, scale, cx, cy);
+        const p3 = project(d.dx, d.dy - arm, d.dz, scale, cx, cy);
+        const p4 = project(d.dx, d.dy + arm, d.dz, scale, cx, cy);
+
+        ctx.beginPath();
+        ctx.moveTo(p1[0], p1[1]); ctx.lineTo(p2[0], p2[1]);
+        ctx.moveTo(p3[0], p3[1]); ctx.lineTo(p4[0], p4[1]);
+        ctx.strokeStyle = 'rgba(10, 11, 13, 0.9)';
+        ctx.lineWidth = 1.6;
+        ctx.stroke();
+
+        ctx.beginPath();
+        ctx.arc(d.a[0], d.a[1], 3, 0, Math.PI * 2);
+        ctx.fillStyle = '#0a0b0d';
+        ctx.fill();
+      });
+
+      requestAnimationFrame(render);
+    }
+
+    requestAnimationFrame(render);
+  </script>
+</body>
+</html>

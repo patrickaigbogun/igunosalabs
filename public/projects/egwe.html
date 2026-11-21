@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Egwe — Igunosalabs</title>
+  <meta name="description" content="Egwe is a hive-mind drone swarm model trained on simulated multi-condition flight data grounded in Nigerian atmospheric and climate research." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Plus+Jakarta+Sans:wght@500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <a href="/" class="brand">Igunosalabs</a>
+      <nav class="nav-links" aria-label="Primary">
+        <a href="/#development">Development</a>
+        <a href="/#projects">Projects</a>
+        <a href="/#open">Open Use</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="project-hero">
+      <img src="/assets/project-egwe.jpg" alt="Egwe autonomous drone swarm" />
+      <div class="container project-hero-inner">
+        <a href="/#projects" class="back-link">&larr; All Projects</a>
+        <div><span class="stage-pill">Proof of Concept</span></div>
+        <h1 class="display-h2" style="margin-bottom: 18px;">Egwe</h1>
+        <p class="lead-copy" style="color: rgba(245, 245, 243, 0.85);">
+          A hive-mind drone swarm model trained on simulated multi-condition flight data, grounded in Nigerian atmospheric and climate research.
+        </p>
+      </div>
+    </section>
+
+    <section class="project-body">
+      <div class="container project-prose">
+        <h2>Swarm coordination built for real environments.</h2>
+        <p>
+          Most autonomous flight models are trained and validated under clean, temperate assumptions. In practice, real deployment across West Africa means coping with Harmattan dust, shifting wind shear, heat, and variable visibility.
+        </p>
+        <p>
+          Egwe is a coordinated hive-mind swarm model trained across simulated environmental conditions derived from Nigerian academic atmospheric research. Instead of treating each aircraft in isolation, the swarm coordinates state, formation, and resilience collectively.
+        </p>
+        <p>
+          As with all Igunosalabs R&amp;D, Egwe is being developed in the open so engineering teams, researchers, and commercial operators can adapt and deploy the findings in real-world missions.
+        </p>
+      </div>
+    </section>
+
+    <section id="contact" class="closing">
+      <div class="container closing-inner">
+        <h2 class="display-h2">Discuss Egwe.</h2>
+        <p class="lead-copy">
+          Interested in collaborating on swarm simulation, hardware testing, or commercial deployment? Leave your email and we’ll reach out directly.
+        </p>
+
+        <form id="contact-form" class="contact-form" novalidate>
+          <input type="hidden" name="project" value="Egwe" />
+          <div class="form-row">
+            <input type="email" name="email" class="input-field" placeholder="you@company.com" required autocomplete="email" />
+            <button type="submit" class="btn btn-white">Reach Out</button>
+          </div>
+          <div id="form-status" class="form-status" role="status" aria-live="polite"></div>
+        </form>
+      </div>
+
+      <div class="container">
+        <footer>
+          <span>&copy; 2026 Igunosalabs</span>
+          <span>robotics.dexx.systems</span>
+        </footer>
+      </div>
+    </section>
+  </main>
+
+  <script src="/contact.js"></script>
+</body>
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AX — Igunosalabs</title>
+  <meta name="description" content="AX is an ongoing working thesis on post-chat, agent-mediated human-computer interaction and emerging standards for Agentic Experience." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Plus+Jakarta+Sans:wght@500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <a href="/" class="brand">Igunosalabs</a>
+      <nav class="nav-links" aria-label="Primary">
+        <a href="/#development">Development</a>
+        <a href="/#projects">Projects</a>
+        <a href="/#open">Open Use</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="project-hero">
+      <img src="/assets/project-ax.jpg" alt="AX post-chat agentic interface research" />
+      <div class="container project-hero-inner">
+        <a href="/#projects" class="back-link">&larr; All Projects</a>
+        <div><span class="stage-pill">Working Thesis &middot; Active Research</span></div>
+        <h1 class="display-h2" style="margin-bottom: 18px;">AX</h1>
+        <p class="lead-copy" style="color: rgba(245, 245, 243, 0.85);">
+          A working thesis on agent-mediated interaction—and why the chat box is not the endgame for software interfaces.
+        </p>
+      </div>
+    </section>
+
+    <section class="project-body">
+      <div class="container project-prose">
+        <h2>Beyond the chat box.</h2>
+        <p>
+          As software becomes increasingly agent-driven, generating and rendering static UI is rapidly ceasing to be the bottleneck. Yet most AI products still funnel complex, multi-step intent through a single linear text box.
+        </p>
+        <p>
+          AX (Agentic Experience) is our ongoing working thesis and empirical exploration into post-chat interaction paradigms. When the majority of human-machine interaction flows through an autonomous agent rather than manual clicks, the core design challenge shifts from layout to orchestration, delegation, feedback, and trust.
+        </p>
+        <p>
+          We believe a foundational standard for building agentic experiences is emerging—much like GUI conventions once standardized desktop computing. AX is our effort to define, prototype, and test those primitives in the open.
+        </p>
+      </div>
+    </section>
+
+    <section id="contact" class="closing">
+      <div class="container closing-inner">
+        <h2 class="display-h2">Discuss AX.</h2>
+        <p class="lead-copy">
+          Exploring agent-mediated interfaces, HCI research, or next-generation product standards? Leave your email and we’ll reach out directly.
+        </p>
+
+        <form id="contact-form" class="contact-form" novalidate>
+          <input type="hidden" name="project" value="AX" />
+          <div class="form-row">
+            <input type="email" name="email" class="input-field" placeholder="you@company.com" required autocomplete="email" />
+            <button type="submit" class="btn btn-white">Reach Out</button>
+          </div>
+          <div id="form-status" class="form-status" role="status" aria-live="polite"></div>
+        </form>
+      </div>
+
+      <div class="container">
+        <footer>
+          <span>&copy; 2026 Igunosalabs</span>
+          <span>robotics.dexx.systems</span>
+        </footer>
+      </div>
+    </section>
+  </main>
+
+  <script src="/contact.js"></script>
+</body>
+</html>

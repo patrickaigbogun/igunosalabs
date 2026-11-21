@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Unose — Igunosalabs</title>
+  <meta name="description" content="Unose is a family of speech models trained on Nigerian Pidgin and English corpora to understand and speak naturally at state-of-the-art accuracy." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Plus+Jakarta+Sans:wght@500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <a href="/" class="brand">Igunosalabs</a>
+      <nav class="nav-links" aria-label="Primary">
+        <a href="/#development">Development</a>
+        <a href="/#projects">Projects</a>
+        <a href="/#open">Open Use</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="project-hero">
+      <img src="/assets/project-unose.jpg" alt="Unose studio acoustic hardware" />
+      <div class="container project-hero-inner">
+        <a href="/#projects" class="back-link">&larr; All Projects</a>
+        <div><span class="stage-pill">Closed Beta &middot; SOTA Benchmark</span></div>
+        <h1 class="display-h2" style="margin-bottom: 18px;">Unose</h1>
+        <p class="lead-copy" style="color: rgba(245, 245, 243, 0.85);">
+          A family of speech models trained on Nigerian Pidgin and English corpora to understand and speak like Nigerians—with state-of-the-art performance.
+        </p>
+      </div>
+    </section>
+
+    <section class="project-body">
+      <div class="container project-prose">
+        <h2>Voice AI that actually speaks the language.</h2>
+        <p>
+          Mainstream speech recognition and synthesis models routinely break down on Nigerian English, Nigerian Pidgin, and natural code-switching—forcing hundreds of millions of speakers to adapt their voice to machines instead of the reverse.
+        </p>
+        <p>
+          The Unose family of models is trained directly on curated Nigerian Pidgin and English speech corpora to both understand and generate natural, authentic speech, with flagship checkpoints reaching state-of-the-art accuracy.
+        </p>
+        <p>
+          Built as open research that product teams, voice platforms, and hardware makers can deploy commercially.
+        </p>
+      </div>
+    </section>
+
+    <section id="contact" class="closing">
+      <div class="container closing-inner">
+        <h2 class="display-h2">Discuss Unose.</h2>
+        <p class="lead-copy">
+          Interested in evaluating Unose models, contributing speech data, or building commercial voice products? Leave your email and we’ll reach out directly.
+        </p>
+
+        <form id="contact-form" class="contact-form" novalidate>
+          <input type="hidden" name="project" value="Unose" />
+          <div class="form-row">
+            <input type="email" name="email" class="input-field" placeholder="you@company.com" required autocomplete="email" />
+            <button type="submit" class="btn btn-white">Reach Out</button>
+          </div>
+          <div id="form-status" class="form-status" role="status" aria-live="polite"></div>
+        </form>
+      </div>
+
+      <div class="container">
+        <footer>
+          <span>&copy; 2026 Igunosalabs</span>
+          <span>robotics.dexx.systems</span>
+        </footer>
+      </div>
+    </section>
+  </main>
+
+  <script src="/contact.js"></script>
+</body>
+</html>
